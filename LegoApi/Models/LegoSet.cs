@@ -11,7 +11,7 @@ namespace LegoApi.Models
 
         public int Year { get; set; }
 
-        public IEnumerable<string> KeyWords { get; set; }
+        public string Description { get; set; }
 
         public Uri Link { get; set; }
     }
