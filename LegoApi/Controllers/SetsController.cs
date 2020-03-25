@@ -25,14 +25,14 @@ namespace LegoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LegoSet>>> GetLegoSet()
         {
-            return await _context.LegoSet.ToListAsync();
+            return await _context.LegoSets.ToListAsync();
         }
 
         // GET: api/Sets/5
         [HttpGet("{id}")]
         public async Task<ActionResult<LegoSet>> GetLegoSet(Guid id)
         {
-            var legoSet = await _context.LegoSet.FindAsync(id);
+            var legoSet = await _context.LegoSets.FindAsync(id);
 
             if (legoSet == null)
             {
@@ -80,7 +80,7 @@ namespace LegoApi.Controllers
         [HttpPost]
         public async Task<ActionResult<LegoSet>> PostLegoSet(LegoSet legoSet)
         {
-            _context.LegoSet.Add(legoSet);
+            _context.LegoSets.Add(legoSet);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetLegoSet", new { id = legoSet.Id }, legoSet);
@@ -90,13 +90,13 @@ namespace LegoApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<LegoSet>> DeleteLegoSet(Guid id)
         {
-            var legoSet = await _context.LegoSet.FindAsync(id);
+            var legoSet = await _context.LegoSets.FindAsync(id);
             if (legoSet == null)
             {
                 return NotFound();
             }
 
-            _context.LegoSet.Remove(legoSet);
+            _context.LegoSets.Remove(legoSet);
             await _context.SaveChangesAsync();
 
             return legoSet;
@@ -104,7 +104,7 @@ namespace LegoApi.Controllers
 
         private bool LegoSetExists(Guid id)
         {
-            return _context.LegoSet.Any(e => e.Id == id);
+            return _context.LegoSets.Any(e => e.Id == id);
         }
     }
 }

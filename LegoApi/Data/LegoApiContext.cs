@@ -14,6 +14,6 @@ namespace LegoApi.Data
         {
         }
 
-        public DbSet<LegoApi.Models.LegoSet> LegoSet { get; set; }
+        public DbSet<LegoApi.Models.LegoSet> LegoSets { get; set; }
     }
 }

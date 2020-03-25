@@ -31,7 +31,7 @@ namespace LegoApi
             services.AddControllers();
 
             services.AddDbContext<LegoApiContext>(options =>
-                    options.UseInMemoryDatabase("LegoInMemory"));
+                    options.UseSqlServer(Configuration.GetConnectionString("LegoApiContext")));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
