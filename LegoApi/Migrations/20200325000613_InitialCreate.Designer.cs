@@ -4,14 +4,16 @@ using LegoApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LegoApi.Migrations
 {
     [DbContext(typeof(LegoApiContext))]
-    partial class LegoApiContextModelSnapshot : ModelSnapshot
+    [Migration("20200325000613_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace LegoApi.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdNumber")
-                        .HasColumnType("int");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");

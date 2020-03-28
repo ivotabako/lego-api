@@ -14,5 +14,7 @@ namespace LegoApi.Models
         public string Description { get; set; }
 
         public Uri Link { get; set; }
+
+        public int IdNumber { get; set; }
     }
 }
