@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LegoApi.Data;
 using LegoApi.Models;
+using Microsoft.Extensions.Logging;
 
 namespace LegoApi.Controllers
 {
@@ -15,10 +16,12 @@ namespace LegoApi.Controllers
     public class SetsController : ControllerBase
     {
         private readonly LegoApiContext _context;
+        private readonly ILogger _logger;
 
-        public SetsController(LegoApiContext context)
+        public SetsController(LegoApiContext context, ILoggerFactory logger)
         {
             _context = context;
+            _logger = logger.CreateLogger(nameof(SetsController));
         }
 
         // GET: api/Sets
@@ -36,6 +39,7 @@ namespace LegoApi.Controllers
 
             if (legoSet == null)
             {
+                _logger.LogInformation($"lego with id {id} was not found");
                 return NotFound();
             }
 
