@@ -4,14 +4,16 @@ using LegoApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LegoApi.Migrations
 {
     [DbContext(typeof(LegoApiContext))]
-    partial class LegoApiContextModelSnapshot : ModelSnapshot
+    [Migration("20210920211848_InstructionPages")]
+    partial class InstructionPages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

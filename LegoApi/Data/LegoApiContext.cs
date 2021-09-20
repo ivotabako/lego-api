@@ -15,5 +15,7 @@ namespace LegoApi.Data
         }
 
         public DbSet<LegoApi.Models.LegoSet> LegoSets { get; set; }
+
+        public DbSet<LegoApi.Models.LegoSetInstructionsPage> LegoSetInstructionsPages { get; set; }
     }
 }

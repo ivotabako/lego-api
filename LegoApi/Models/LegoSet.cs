@@ -16,5 +16,7 @@ namespace LegoApi.Models
         public Uri Link { get; set; }
 
         public int IdNumber { get; set; }
+
+        public List<LegoSetInstructionsPage> Instructions { get; set; }
     }
 }
