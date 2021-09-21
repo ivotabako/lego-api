@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LegoApi.Data;
 using LegoApi.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace LegoApi.Controllers
 {
@@ -26,9 +27,20 @@ namespace LegoApi.Controllers
 
         // GET: api/Sets
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LegoSet>>> GetLegoSet()
+        public async Task<ActionResult<List<LegoSet>>> GetLegoSet(
+            [FromQuery] int? year, 
+            [FromQuery] int? number, 
+            [FromQuery] string description, 
+            int page = 0, int pageSize = 10 )
         {
-            return await _context.LegoSets.ToListAsync();
+            var sets = await _context.LegoSets
+                .Where(s => !year.HasValue || s.Year.Equals(year))
+                .Where(s => !number.HasValue || s.IdNumber.Equals(number))
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return Ok(sets.Where(s => string.IsNullOrWhiteSpace(description) || LikeOperator.LikeString(s.Description, description, Microsoft.VisualBasic.CompareMethod.Text)));
         }
 
         // GET: api/Sets/5
