@@ -26,9 +26,16 @@ namespace LegoApi.Controllers
 
         // GET: api/LegoSetInstructionsPages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LegoSetInstructionsPage>>> GetLegoSetInstructionsPages()
+        public async Task<ActionResult<IEnumerable<LegoSetInstructionsPage>>> GetLegoSetInstructionsPages([FromQuery] int number = 0, int pageNumber = 0)
         {
-            return await _context.LegoSetInstructionsPages.ToListAsync();
+            if (number == 0)
+            {
+                return BadRequest("please provide lego number!");
+            }
+            return await _context.LegoSetInstructionsPages
+                .Where(p => p.LegoSet.IdNumber.Equals(number))
+                .Where(p => pageNumber == 0 || p.PageNumber == pageNumber)
+                .OrderBy(p=>p.PageNumber).ToListAsync();
         }
 
         // GET: api/LegoSetInstructionsPages/5
